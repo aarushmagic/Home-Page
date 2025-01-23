@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Aarush Lanjharia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -804,13 +804,16 @@
                 <i class="fas fa-folder"></i> Awards
             </div>
             <div class="desktop-icon folder-icon" data-folder="certifications-folder">
-                <i class="fas fa-certificate"></i> Certifications
+                <i class="fas fa-folder"></i> Certifications
+            </div>
+            <div class="desktop-icon" data-window="bing-window">
+                <i class="fa-brands fa-edge"></i> Edge
+            </div>
+            <div class="desktop-icon" data-window="mail-window">
+                <i class="fa-solid fa-envelope"></i> Email
             </div>
             <div class="desktop-icon" data-window="terminal-window">
                 <i class="fas fa-terminal"></i> Terminal
-            </div>
-            <div class="desktop-icon" data-window="bing-window">
-                <i class="fab fa-microsoft"></i> Bing
             </div>
         </div>
 
@@ -981,7 +984,7 @@
             <!-- Bing Window -->
             <div class="window bing-window" id="bing-window">
                 <div class="window-titlebar">
-                    <span class="window-title">Bing</span>
+                    <span class="window-title">Microsoft Edge</span>
                     <div class="window-buttons">
                         <span class="window-close" data-window="bing-window"><i class="fas fa-times"></i></span>
                     </div>
@@ -1079,7 +1082,7 @@
                                 type: 'dir',
                                 elementId: 'certifications-folder'
                             },
-                            'Bing': { type: 'file', elementId: 'bing-window' }
+                            'Edge': { type: 'file', elementId: 'bing-window' }
                         }
                     }
                 };
@@ -1305,6 +1308,9 @@
             });
 
             // --- Icon Click Handlers ... (UPDATED to include Bing window) ...
+            document.getElementsByClassName("fa-solid fa-envelope")[0].addEventListener('click', () => {
+                openNewTab('mailto:alanjharia@gmail.com');
+            })
             desktopIcons.forEach(icon => {
                 icon.addEventListener('click', () => {
                     const windowId = icon.getAttribute('data-window');
@@ -1324,6 +1330,9 @@
                                 loadResumePDF();
                             } else if (windowId === 'linkedin-window') {
                                 openNewTab('https://www.linkedin.com/in/aarush-lanjharia-065216228/', '_blank');
+                                windowElement.style.display = 'none';
+                            } else if (windowId === 'mail-window') {
+                                openNewTab('mailto:alanjharia@gmail.com');
                                 windowElement.style.display = 'none';
                             } else if (windowId === 'github-window') {
                                 openNewTab('https://github.com/heightcalculator/', '_blank');
@@ -1463,21 +1472,6 @@
                 openedTabs.push(newTab);
             }
 
-            // Modify your existing LinkedIn and GitHub icon click handlers to use openNewTab:
-            desktopIcons.forEach(icon => {
-                icon.addEventListener('click', () => {
-                    // ... (Your existing icon click handler logic) ...
-                    if (windowId === 'linkedin-window') {
-                        openNewTab('https://www.linkedin.com/in/aarush-lanjharia-065216228/');
-                        windowElement.style.display = 'none';
-                    } else if (windowId === 'github-window') {
-                        openNewTab('https://github.com/heightcalculator/');
-                        windowElement.style.display = 'none';
-                    }
-                    // ... (Rest of your icon click handler logic) ...
-                });
-            });
-
             shutdownOption.addEventListener('click', () => {
                 // Close all tabs in the openedTabs array
                 for (const tab of openedTabs) {
@@ -1562,7 +1556,7 @@
                     });
 
                     // Search Bing (basic check - you can refine this)
-                    if (["bing", "search", "browser"].includes(searchTerm)) {
+                    if (["bing", "search", "browser", "edge"].includes(searchTerm)) {
                         document.getElementById('bing-window').style.display = 'flex';
                         document.getElementById('bing-window').style.zIndex = currentZIndex++;
                         foundMatch = true;
