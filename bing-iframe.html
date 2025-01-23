@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bing</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ffffff, #f3f4f7);
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .logo h1 {
+            font-size: 64px;
+            font-weight: bold;
+            color: #008373;
+            /* Modern Bing Green */
+            margin-bottom: 30px;
+        }
+
+        .search-section {
+            margin-top: 20px;
+        }
+
+        .search-section input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 24px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-section input:focus {
+            border-color: #008373;
+            box-shadow: 0px 4px 12px rgba(0, 131, 115, 0.3);
+        }
+
+        .search-section button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #008373;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .search-section button:hover {
+            background-color: #006f5c;
+        }
+
+        .search-section button:active {
+            transform: scale(0.98);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="noIframe">
+        <div class="container">
+            <header class="logo">
+                <h1>Bing</h1>
+            </header>
+            <div class="search-section">
+                <input type="text" id="srchField" placeholder="Search Bing..." />
+                <br />
+                <button id="srchButton">Search</button>
+            </div>
+        </div>
+    </div>
+    <iframe style="display:none" class="viewport-container" src="https://bing.com/search?q=" id="theiframe"></iframe>
+    <script>
+        document.getElementById("srchButton").addEventListener("click", () => {
+            document.getElementById("theiframe").src = "https://bing.com/search?q=" + document.getElementById("srchField").value
+            document.getElementById("noIframe").style.display = "none";
+            document.getElementById("theiframe").style.display = "block";
+        })
+    </script>
+</body>
+
+</html>
