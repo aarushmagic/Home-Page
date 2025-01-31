@@ -800,6 +800,7 @@
                     <input type="text" placeholder="Search..." id="search-input">
                 </div>
                 <div class="taskbar-icons">
+<<<<<<< HEAD
                     <div title="Aarush Magic" class="taskbar-icon" id="magicButton">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
@@ -814,6 +815,19 @@
                     </div>
                     <div title="Photo Carousel" class="taskbar-icon" id="imageButton">
                         <i class="fa-solid fa-images"></i>
+=======
+                    <div class="taskbar-icon" id="magicButton">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div class="taskbar-icon" id="rsaButton">
+                        <i class="fa-solid fa-fingerprint"></i>
+                    </div>
+                    <div class="taskbar-icon" id="sundialButton">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <div class="taskbar-icon" id="fontButton">
+                        <i class="fa-solid fa-signature"></i>
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
                     </div>
                     <!-- Add more taskbar icons here -->
                 </div>
@@ -878,6 +892,12 @@
             <div class="desktop-icon folder-icon" data-folder="awards-folder">
                 <i class="fas fa-folder"></i> Awards
             </div>
+<<<<<<< HEAD
+=======
+            <div class="desktop-icon folder-icon" data-folder="certifications-folder">
+                <i class="fas fa-folder"></i> Certifications
+            </div>
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
             <div class="desktop-icon" data-window="bing-window">
                 <i class="fa-brands fa-edge"></i> Edge
             </div>
@@ -1462,6 +1482,7 @@
                 });
             });
 
+<<<<<<< HEAD
             const awardsList = document.getElementById('awards-list').getElementsByTagName("li");
             for (let i = 0; i < awardsList.length; i++) {
                 awardsList[i].addEventListener('mouseenter', () => {
@@ -1472,6 +1493,24 @@
                     windowElement.style.display = 'flex';
                     windowElement.style.zIndex = currentZIndex++;
                     windowElement.style.left = Number(window.getComputedStyle(document.getElementById("awards-folder")).left.slice(0, -2)) + Number(window.getComputedStyle(document.getElementById("awards-folder")).width.slice(0, -2)) + 10 + "px";
+=======
+            document.getElementById("magicButton").addEventListener('click', () => {
+                openNewTab("https://aarushmagic.com")
+            })
+            document.getElementById("rsaButton").addEventListener('click', () => {
+                openNewTab("https://rsa.aarushmagic.com/preview")
+            })
+            document.getElementById("sundialButton").addEventListener('click', () => {
+                openNewTab("https://sundial.aarushmagic.com/make/two")
+            })
+            document.getElementById("fontButton").addEventListener('click', () => {
+                openNewTab("https://fonts.aarushmagic.com")
+            })
+            taskbarIcons.forEach(icon => { // Add click functionality to taskbar icons
+                icon.addEventListener('click', () => {
+                    const windowId = icon.getAttribute('data-window');
+                    const folderId = icon.getAttribute('data-folder');
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
 
                     //windowElement.style.width = Number(window.getComputedStyle(document.getElementById("img-iframe")).width.slice(0, -2));
                 });
@@ -1662,26 +1701,35 @@
                     }
 
                     if (["sundial"].includes(searchTerm)) {
+<<<<<<< HEAD
                         iframeToOpen = document.getElementById("generic-iframe")
                         document.getElementById("generic-iframe").src = "https://sundial.aarushmagic.com/make/two"
                         document.getElementById("generic-window-title").innerHTML = "Sundial Maker"
                         const windowElement = document.getElementById("generic-window");
                         windowElement.style.display = 'flex';
                         windowElement.style.zIndex = currentZIndex++;
+=======
+                        openNewTab("https://sundial.aarushmagic.com/make/two")
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
                         foundMatch = true;
                     }
 
                     if (["rsa", "encryption", "encrypter", "key"].includes(searchTerm)) {
+<<<<<<< HEAD
                         iframeToOpen = document.getElementById("generic-iframe")
                         document.getElementById("generic-iframe").src = "https://rsa.aarushmagic.com/preview"
                         document.getElementById("generic-window-title").innerHTML = "RSA Encryption"
                         const windowElement = document.getElementById("generic-window");
                         windowElement.style.display = 'flex';
                         windowElement.style.zIndex = currentZIndex++;
+=======
+                        openNewTab("https://rsa.aarushmagic.com/preview")
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
                         foundMatch = true;
                     }
 
                     if (["font", "handwriting"].includes(searchTerm)) {
+<<<<<<< HEAD
                         iframeToOpen = document.getElementById("generic-iframe")
                         document.getElementById("generic-iframe").src = "https://fonts.aarushmagic.com"
                         document.getElementById("generic-window-title").innerHTML = "Font Maker"
@@ -1698,11 +1746,18 @@
                         const windowElement = document.getElementById("generic-window");
                         windowElement.style.display = 'flex';
                         windowElement.style.zIndex = currentZIndex++;
+=======
+                        openNewTab("https://fonts.aarushmagic.com")
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
                         foundMatch = true;
                     }
 
                     if (!foundMatch) {
+<<<<<<< HEAD
                         searchInput.style.color = "#cc0000"
+=======
+                        searchInput.style.color = "red"
+>>>>>>> 2a781205ec231d87440b906988f55f793631304b
                         setTimeout(() => {
                             searchInput.style.color = "#555";
                         }, "500");
