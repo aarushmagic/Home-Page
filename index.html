@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarush Lanjharia</title>
+    <meta name="description" content="Welcome to the home page website for Aarush Lanjharia!">
+    <link rel="icon" type="image/x-icon" href="/files/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +24,7 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background-image: url('desktop-background-modern.jpg');
+            background-image: url('desktop-background-modern.webp');
             background-size: cover;
             background-position: center;
         }
@@ -282,6 +284,18 @@
             left: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            grid-gap: 25px;
+            padding: 25px;
+            z-index: 10;
+        }
+
+        .desktop-icons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            /* Crucial Change */
             grid-gap: 25px;
             padding: 25px;
             z-index: 10;
@@ -1077,7 +1091,7 @@
                 </div>
                 <div class="window-content">
                     <iframe id="generic-iframe" src=""
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-top-navigation"
                         allow="geolocation"></iframe>
                 </div>
                 <div class="window-resize-handle window-resize-nw"></div>
