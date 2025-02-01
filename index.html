@@ -817,11 +817,11 @@
                     <div title="Aarush Magic" class="taskbar-icon" id="magicButton">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
+                    <div title="Sundial Maker" class="taskbar-icon" id="sundialButton">
+                        <i class="fa-regular fa-clock"></i>
                     <div title="RSA Ecnryption" class="taskbar-icon" id="rsaButton">
                         <i class="fa-solid fa-fingerprint"></i>
                     </div>
-                    <div title="Sundial Maker" class="taskbar-icon" id="sundialButton">
-                        <i class="fa-regular fa-clock"></i>
                     </div>
                     <div title="Font Maker" class="taskbar-icon" id="fontButton">
                         <i class="fa-solid fa-signature"></i>
@@ -1510,13 +1510,8 @@
                 windowElement.style.zIndex = currentZIndex++;
             })
             document.getElementById("sundialButton").addEventListener('click', () => {
-                iframeToOpen = document.getElementById("generic-iframe")
-                document.getElementById("generic-iframe").src = "https://sundial.aarushmagic.com/make/two"
-                document.getElementById("generic-window-title").innerHTML = "RSA Encryption"
-                const windowElement = document.getElementById("generic-window");
-                windowElement.style.display = 'flex';
-                windowElement.style.zIndex = currentZIndex++;
-            })
+                openNewTab("https://sundial.aarushmagic.com/make/two")
+            });
             document.getElementById("fontButton").addEventListener('click', () => {
                 iframeToOpen = document.getElementById("generic-iframe")
                 document.getElementById("generic-iframe").src = "https://fonts.aarushmagic.com"
@@ -1679,13 +1674,7 @@
                     }
 
                     if (["sundial"].includes(searchTerm)) {
-                        iframeToOpen = document.getElementById("generic-iframe")
-                        document.getElementById("generic-iframe").src = "https://sundial.aarushmagic.com/make/two"
-                        document.getElementById("generic-window-title").innerHTML = "Sundial Maker"
-                        const windowElement = document.getElementById("generic-window");
-                        windowElement.style.display = 'flex';
-                        windowElement.style.zIndex = currentZIndex++;
-                        foundMatch = true;
+                        openNewTab("https://sundial.aarushmagic.com/make/two")
                     }
 
                     if (["rsa", "encryption", "encrypter", "key"].includes(searchTerm)) {
