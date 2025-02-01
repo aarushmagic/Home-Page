@@ -1092,7 +1092,7 @@
                 </div>
                 <div class="window-content">
                     <iframe id="generic-iframe" src=""
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-top-navigation"
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-top-navigation-by-user-activation allow-downloads"
                         allow="geolocation"></iframe>
                 </div>
                 <div class="window-resize-handle window-resize-nw"></div>
@@ -1512,7 +1512,7 @@
             document.getElementById("sundialButton").addEventListener('click', () => {
                 iframeToOpen = document.getElementById("generic-iframe")
                 document.getElementById("generic-iframe").src = "https://sundial.aarushmagic.com/make/two"
-                document.getElementById("generic-window-title").innerHTML = "Sundial Maker"
+                document.getElementById("generic-window-title").innerHTML = "RSA Encryption"
                 const windowElement = document.getElementById("generic-window");
                 windowElement.style.display = 'flex';
                 windowElement.style.zIndex = currentZIndex++;
