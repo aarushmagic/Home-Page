@@ -7,7 +7,7 @@
     <title>Aarush Lanjharia</title>
     <meta name="description" content="Welcome to the home page website for Aarush Lanjharia!">
     <link rel="icon" type="image/x-icon" href="/files/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -1062,14 +1062,15 @@
             <!-- Bing Window -->
             <div class="window bing-window" id="bing-window">
                 <div class="window-titlebar">
-                    <span class="window-title">Microsoft Edge</span>
+                    <i class="fa-solid fa-chevron-left" id="bing-back"></i><span class="window-title"> &emsp;Microsoft
+                        Edge</span>
                     <div class="window-buttons">
                         <span class="window-close" data-window="bing-window"><i class="fas fa-times"></i></span>
                     </div>
                 </div>
                 <div class="window-content">
-                    <iframe src="bing-iframe.html"
-                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+                    <iframe id="bing-iframe-box" src="bing-iframe.html"
+                        sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-forms"></iframe>
                 </div>
                 <div class="window-resize-handle window-resize-nw"></div>
                 <div class="window-resize-handle window-resize-ne"></div>
@@ -1112,7 +1113,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // ... (Your JavaScript from above - keep all of it, with the following additions) ...
@@ -1342,6 +1343,10 @@
             document.querySelectorAll('.window-titlebar, .folder-view .window-titlebar, .terminal-window .window-titlebar, .bing-window .window-titlebar').forEach(titlebar => { // Include terminal window titlebar
                 titlebar.addEventListener('mousedown', startDrag);
             });
+
+            document.getElementById('bing-back').addEventListener('click', () => {
+                document.getElementById('bing-iframe-box').contentWindow.history.back();
+            })
 
             // --- Window Resizing ... (rest of your JavaScript - keep all of it) ...
             let isResizing = false;
