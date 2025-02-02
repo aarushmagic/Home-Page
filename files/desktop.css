@@ -1,0 +1,789 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    background-color: #e0e8ef;
+    user-select: none;
+}
+
+.desktop {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../desktop-background-modern.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background-color: rgba(240, 240, 240, 0.7);
+    border-top: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    backdrop-filter: blur(15px);
+    z-index: 100;
+}
+
+.taskbar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.taskbar-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.taskbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.start-button {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+    position: relative;
+    /* Make start button a positioning context for the menu */
+}
+
+.start-button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.start-button:active {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.start-button i {
+    margin-right: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.taskbar-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 10px;
+}
+
+.taskbar-icon {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    padding: 5px 8px;
+    margin: 0 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.taskbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.taskbar-icon:active {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.taskbar-icon i {
+    margin-right: 0;
+    color: #333;
+}
+
+.taskbar-search {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+.taskbar-search input {
+    border: none;
+    outline: none;
+    padding: 6px 10px;
+    font-size: 0.95em;
+    width: 220px;
+    background-color: transparent;
+    color: #555;
+    height: 10px;
+}
+
+.taskbar-time {
+    font-size: 0.9em;
+    padding: 5px 10px;
+    color: #333;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* Stack time and date */
+    align-items: flex-end;
+    /* Right-align time and date */
+    cursor: pointer;
+}
+
+.taskbar-time-time {
+    font-size: 1em;
+    line-height: 1.2;
+    white-space: nowrap;
+    /* Prevent time wrapping */
+}
+
+.taskbar-time-date {
+    font-size: 0.85em;
+    line-height: 1;
+    color: #777;
+    white-space: nowrap;
+    /* Prevent date wrapping */
+}
+
+/* System Icons Styles */
+.system-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.system-icon {
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.system-icon i {
+    font-size: 1em;
+    color: #555;
+}
+
+.system-icon .tooltip {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    margin-bottom: 5px;
+    z-index: 100;
+}
+
+.system-icon:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Calendar Popup Styles */
+.calendar-popup {
+    position: fixed;
+    bottom: 48px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    /* Reduced padding */
+    z-index: 101;
+    pointer-events: auto;
+    width: 280px;
+    /* Slightly wider calendar */
+}
+
+.calendar-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.9em;
+    /* Smaller weekday names */
+    color: #777;
+    /* Lighter weekday color */
+}
+
+.calendar-days {
+    /* Corrected CSS: Removed .calendar-week, targetting .calendar-days directly */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* 7 columns for days */
+    gap: 2px;
+    /* Reduced gap between days */
+}
+
+.calendar-day,
+.calendar-day-empty {
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    /* Rounded day numbers */
+    transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.today {
+    background-color: #e0e0e0;
+}
+
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-gap: 25px;
+    padding: 25px;
+    z-index: 10;
+}
+
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    /* Crucial Change */
+    grid-gap: 25px;
+    padding: 25px;
+    z-index: 10;
+}
+
+.desktop-icon,
+.folder-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+    text-shadow: none;
+}
+
+.desktop-icon i,
+.folder-icon i {
+    font-size: 2.5em;
+    margin-bottom: 8px;
+    color: #0078D4;
+}
+
+.window-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Initially allow clicks to pass through */
+}
+
+.window,
+.folder-view,
+.terminal-window,
+.bing-window .generic-window {
+    /* Include terminal-window here */
+    position: absolute;
+    top: 50px;
+    left: 350px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 650px;
+    min-height: 350px;
+    display: none;
+    flex-direction: column;
+    pointer-events: auto;
+    /* Make windows interactive */
+    resize: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.bing-window {
+    width: 800px;
+    height: 600px;
+}
+
+.folder-view {
+    width: 500px;
+}
+
+.window-titlebar,
+.folder-view .window-titlebar,
+.terminal-window .window-titlebar,
+.bing-window .window-titlebar,
+.generic-window .window-titlebar {
+    /* Include terminal-window here */
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.folder-view .window-titlebar::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    background-image: url('folder-icon-modern.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.window-titlebar .window-title,
+.folder-view .window-titlebar .window-title,
+.terminal-window .window-titlebar .window-title,
+.bing-window .window-titlebar .window-title,
+.generic-window .window-titlebar .window-title {
+    /* Include terminal-window here */
+    flex-grow: 1;
+    font-weight: normal;
+    color: #333;
+}
+
+.window-buttons {
+    display: flex;
+}
+
+.window-close {
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.window-close:hover {
+    background-color: #fddede;
+    /* Light red on hover */
+}
+
+.window-close:active {
+    background-color: #fccbcb;
+}
+
+.window-content,
+.folder-content,
+.terminal-window .window-content,
+.bing-window .window-content {
+    /* Include terminal-window here */
+    padding: 20px;
+    overflow: auto;
+    color: #444;
+}
+
+.folder-content {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 15px;
+    overflow-y: auto;
+    height: auto;
+}
+
+.folder-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.folder-content li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+}
+
+.folder-content li:hover {
+    background-color: #f0f0f0;
+}
+
+.folder-content li:last-child {
+    border-bottom: none;
+}
+
+.folder-content li i {
+    margin-right: 12px;
+    color: #0078D4;
+    font-size: 1.2em;
+}
+
+/* Resize Handles (slightly more subtle) */
+.window-resize-handle {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.window-resize-nw,
+.window-resize-se {
+    width: 8px;
+    height: 8px;
+    cursor: nwse-resize;
+    border-radius: 2px;
+}
+
+.window-resize-ne,
+.window-resize-sw {
+    width: 8px;
+    height: 8px;
+    cursor: nesw-resize;
+    border-radius: 2px;
+}
+
+.window-resize-n,
+.window-resize-s {
+    width: 100%;
+    height: 4px;
+    cursor: ns-resize;
+}
+
+.window-resize-e,
+.window-resize-w {
+    width: 4px;
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.window-resize-nw {
+    top: 0;
+    left: 0;
+}
+
+.window-resize-ne {
+    top: 0;
+    right: 0;
+}
+
+.window-resize-se {
+    bottom: 0;
+    right: 0;
+}
+
+.window-resize-sw {
+    bottom: 0;
+    left: 0;
+}
+
+.window-resize-n {
+    top: 0;
+    left: 0;
+}
+
+.window-resize-s {
+    bottom: 0;
+    left: 0;
+}
+
+.window-resize-e {
+    top: 0;
+    right: 0;
+}
+
+.window-resize-w {
+    top: 0;
+    left: 0;
+}
+
+.terminal-window {
+    background-color: #1e1e1e;
+}
+
+/* --- Terminal Window Specific Styles --- */
+.terminal-window .window-content {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    font-family: monospace, monospace;
+    padding: 15px;
+    overflow: auto;
+    white-space: pre-wrap;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-output {
+    margin-bottom: 8px;
+    flex-grow: 1;
+    min-height: 0;
+    font-size: 15px;
+}
+
+.terminal-prompt {
+    color: #4CAF50;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.terminal-input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #f0f0f0;
+    font-family: monospace, monospace;
+    flex-grow: 1;
+    min-width: 50px;
+    font-size: 15px;
+}
+
+/* --- Resume PDF Viewer Styles --- */
+#resume-pdf-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#resume-window .window-content {
+    overflow: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-viewer-controls {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.pdf-viewer-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Start Menu Styles */
+.start-menu {
+    position: absolute;
+    bottom: 55px;
+    /* Adjust as needed */
+    left: 10px;
+    /* Adjust as needed */
+    width: 200px;
+    /* Adjust as needed */
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 102;
+    /* Higher than taskbar */
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    padding: 10px;
+}
+
+.start-menu-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.start-menu-option:hover {
+    background-color: #e0e0e0;
+}
+
+.bing-window .window-content {
+    padding: 0;
+    /* Remove padding for full iframe */
+    overflow: hidden;
+    /* Hide scrollbars initially */
+}
+
+.bing-window iframe {
+    width: 100%;
+    height: 56vh;
+    border: none;
+    /* Remove iframe border */
+}
+
+.bing-window {
+    width: 1200px;
+    height: 600px;
+    display: none;
+    /* Use flexbox */
+    flex-direction: column;
+    /* Stack titlebar and content vertically */
+}
+
+.bing-window .window-content {
+    padding: 0;
+    /* Remove padding for full iframe */
+    overflow: hidden;
+    /* Hide scrollbars initially */
+    flex-grow: 1;
+    /* Allow content to fill available space */
+}
+
+.bing-window iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Remove iframe border */
+}
+
+/* Generic pop-up window */
+.generic-window .window-content {
+    padding: 0;
+    /* Remove padding for full iframe */
+    overflow: hidden;
+    /* Hide scrollbars initially */
+}
+
+.generic-window iframe {
+    width: 100%;
+    height: 56vh;
+    border: none;
+    /* Remove iframe border */
+}
+
+.generic-window {
+    width: 800px;
+    height: 600px;
+    display: none;
+    /* Use flexbox */
+    flex-direction: column;
+    /* Stack titlebar and content vertically */
+}
+
+.generic-window .window-content {
+    padding: 0;
+    /* Remove padding for full iframe */
+    overflow: hidden;
+    /* Hide scrollbars initially */
+    flex-grow: 1;
+    /* Allow content to fill available space */
+}
+
+.generic-window iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Remove iframe border */
+}
+
+/* Image pop-up */
+.img-window .window-content {
+    padding: 0;
+    /* Remove padding for full iframe */
+    overflow: hidden;
+    /* Hide scrollbars initially */
+}
+
+.img-window {
+    display: none;
+    /* Use flexbox */
+    flex-direction: column;
+}
+
+.img-window .window-content {
+    padding: 0;
+    /* Remove padding for full iframe */
+    overflow: hidden;
+    /* Hide scrollbars initially */
+    flex-grow: 1;
+}
+
+.img-window img {
+    max-width: 100%;
+    height: fit-content;
+    border: none;
+    width: fit-content;
+}
+
+/* Notification Popup Styles */
+.notification-popup {
+    position: fixed;
+    bottom: 48px;
+    /* Same as taskbar height */
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 101;
+    /* Same as calendar */
+    pointer-events: auto;
+    width: 300px;
+    /* Adjust width as needed */
+}
+
+.notification-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.notification-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+#notification-icon {
+    margin-left: 10px;
+}
