@@ -544,6 +544,10 @@
             left: 0;
         }
 
+        .terminal-window {
+            background-color: #1e1e1e;
+        }
+
         /* --- Terminal Window Specific Styles --- */
         .terminal-window .window-content {
             background-color: #1e1e1e;
@@ -561,16 +565,19 @@
             margin-bottom: 8px;
             flex-grow: 1;
             min-height: 0;
+            font-size: 15px;
         }
 
         .terminal-prompt {
             color: #4CAF50;
             margin-right: 5px;
+            font-size: 15px;
         }
 
         .terminal-input-line {
             display: flex;
             align-items: center;
+            font-size: 15px;
         }
 
         .terminal-input {
@@ -581,6 +588,7 @@
             font-family: monospace, monospace;
             flex-grow: 1;
             min-width: 50px;
+            font-size: 15px;
         }
 
         /* --- Resume PDF Viewer Styles --- */
@@ -811,7 +819,7 @@
                     </div>
                 </div>
                 <div class="taskbar-search">
-                    <input type="text" placeholder="Search..." id="search-input">
+                    <input type="text" placeholder="Search..." id="search-input" autocomplete=“off”>
                 </div>
                 <div class="taskbar-icons">
                     <div title="Aarush Magic" class="taskbar-icon" id="magicButton">
@@ -880,25 +888,25 @@
 
         <!-- Desktop Icons -->
         <div class="desktop-icons">
-            <div class="desktop-icon" data-window="resume-window">
+            <div id="resume-icon" class="desktop-icon" data-window="resume-window">
                 <i class="fas fa-file-alt"></i> Resume
             </div>
-            <div class="desktop-icon" data-window="linkedin-window">
+            <div id="linkedin-icon" class="desktop-icon" data-window="linkedin-window">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </div>
-            <div class="desktop-icon" data-window="github-window">
+            <div id="github-icon" class="desktop-icon" data-window="github-window">
                 <i class="fab fa-github"></i> GitHub
             </div>
-            <div class="desktop-icon folder-icon" data-folder="awards-folder">
+            <div id="awards-icon" class="desktop-icon folder-icon" data-folder="awards-folder">
                 <i class="fas fa-folder"></i> Awards
             </div>
-            <div class="desktop-icon" data-window="bing-window">
+            <div id="bing-icon" class="desktop-icon" data-window="bing-window">
                 <i class="fa-brands fa-edge"></i> Edge
             </div>
-            <div class="desktop-icon" data-window="mail-window">
+            <div id="email-icon" class="desktop-icon" data-window="mail-window">
                 <i class="fa-solid fa-envelope"></i> Email
             </div>
-            <div class="desktop-icon" data-window="terminal-window">
+            <div id="terminal-icon" class="desktop-icon" data-window="terminal-window">
                 <i class="fas fa-terminal"></i> Terminal
             </div>
         </div>
@@ -990,34 +998,34 @@
                 </div>
                 <div class="folder-content">
                     <ul id="awards-list">
-                        <li data-name="mat"><i class="fas fa-trophy"></i> Mu Alpha Theta
+                        <li data-name="mat" id="mat"><i class="fas fa-trophy"></i> Mu Alpha Theta
                             High
                             School Scholarship - 2024<span class="search-keywords" style="display: none;">mat, mu alpha
                                 theta, scholarship</span></li>
-                        <li data-name="dhsmath"><i class="fas fa-trophy"></i> Certificate of
+                        <li data-name="dhsmath" id="dhsmath"><i class="fas fa-trophy"></i> Certificate of
                             Excellence in Mathematics - 2024 <span class="search-keywords" style="display: none;">award,
                                 excellence, honor, math</span></li>
-                        <li data-name="scibowl"><i class="fas fa-trophy"></i> 2nd Place in GA
+                        <li data-name="scibowl" id="scibowl"><i class="fas fa-trophy"></i> 2nd Place in GA
                             Science
                             Bowl Regionals - 2024 <span class="search-keywords" style="display: none;">science bowl,
                                 regionals, 2nd, second</span></li>
-                        <li data-name="dcsdtech23"><i class="fas fa-trophy"></i> 1st Place in
+                        <li data-name="dcsdtech23" id="dcsdtech23"><i class="fas fa-trophy"></i> 1st Place in
                             Dekalb County Tech Fair - 2023 <span class="search-keywords" style="display: none;">tech
                                 fair, technology fair, first, 1st</span></li>
-                        <li data-name="gatech23"><i class="fas fa-trophy"></i> 2nd Place in GA
+                        <li data-name="gatech23" id="gatech23"><i class="fas fa-trophy"></i> 2nd Place in GA
                             State Tech Competition - 2023 <span class="search-keywords" style="display: none;">award,
                                 accomplishment, merit</span></li>
-                        <li data-name="calccomp4"><i class="fas fa-trophy"></i> 4th Place in GA State
+                        <li data-name="calccomp4" id="calccomp4"><i class="fas fa-trophy"></i> 4th Place in GA State
                             Calculus Competition - 2023 <span class="search-keywords" style="display: none;">award,
                                 excellence, honor</span></li>
-                        <li data-name="calccomp1"><i class="fas fa-trophy"></i> 1st Place in GA State
+                        <li data-name="calccomp1" id="calccomp1"><i class="fas fa-trophy"></i> 1st Place in GA State
                             Calculus Competition (Team) - 2023 <span class="search-keywords"
                                 style="display: none;">award,
                                 excellence, honor</span></li>
-                        <li data-name="multimorley"><i class="fas fa-trophy"></i> Tom Morley Award
+                        <li data-name="multimorley" id="multimorley"><i class="fas fa-trophy"></i> Tom Morley Award
                             in Multivariable Calculus - 2023 <span class="search-keywords"
                                 style="display: none;">morley, multi, multivariable</span></li>
-                        <li data-name="linearmorley"><i class="fas fa-trophy"></i> Tom Morley Award
+                        <li data-name="linearmorley" id="linearmorley"><i class="fas fa-trophy"></i> Tom Morley Award
                             in Linear Algebra - 2022 <span class="search-keywords" style="display: none;">linear, linear
                                 algebra</span></li>
                         <!-- Add more awards as list items -->
@@ -1036,7 +1044,7 @@
             <!-- Terminal Window -->
             <div class="window terminal-window" id="terminal-window">
                 <div class="window-titlebar">
-                    <span class="window-title">Terminal (⚠️Under development⚠️)</span>
+                    <span class="window-title">Terminal</span>
                     <div class="window-buttons">
                         <span class="window-close" data-window="terminal-window"><i class="fas fa-times"></i></span>
                     </div>
@@ -1044,9 +1052,9 @@
                 <div class="window-content" id="terminal-content">
                     <div class="terminal-output" id="terminal-output"></div>
                     <div class="terminal-input-line">
-                        <span class="terminal-prompt">C:\></span>
-                        <input type="text" class="terminal-input" id="terminal-input"
-                            placeholder="Enter command -- Note: Functionality still under development">
+                        <span class="terminal-prompt">C:/></span>
+                        <input type="text" class="terminal-input" id="terminal-input" autocomplete=“off”
+                            placeholder="Enter command">
                     </div>
                 </div>
                 <div class="window-resize-handle window-resize-nw"></div>
@@ -1179,18 +1187,27 @@
                     '/': {
                         type: 'dir',
                         contents: {
-                            'Resume': { type: 'file', elementId: 'resume-window' },
-                            'LinkedIn': { type: 'file', elementId: 'linkedin-window' },
-                            'GitHub': { type: 'file', elementId: 'github-window' },
+                            'Resume': { type: 'file', elementId: 'resume-icon' },
+                            'LinkedIn': { type: 'file', elementId: 'linkedin-icon' },
+                            'GitHub': { type: 'file', elementId: 'github-icon' },
+                            'Edge': { type: 'file', elementId: 'bing-icon' },
+                            'Email': { type: 'file', elementId: 'email-icon' },
+                            'Terminal': { type: 'file', elementId: 'terminal-icon' },
                             'Awards': {
                                 type: 'dir',
-                                elementId: 'awards-folder'
-                            },
-                            'Certifications': {
-                                type: 'dir',
-                                elementId: 'certifications-folder'
-                            },
-                            'Edge': { type: 'file', elementId: 'bing-window' }
+                                elementId: 'awards-icon',
+                                contents: {
+                                    'Mu Alpha Theta Scholarship': { type: 'file', elementId: 'mat' },
+                                    'Certificate of Excellence in Math': { type: 'file', elementId: 'dhsmath' },
+                                    'Science Bowl Regionals': { type: 'file', elementId: 'scibowl' },
+                                    'Dekalb County Tech Fair': { type: 'file', elementId: 'dcsdtech23' },
+                                    'GA State Tech Competition': { type: 'file', elementId: 'gatech23' },
+                                    'GA State Calculus Competition': { type: 'file', elementId: 'calccomp4' },
+                                    'GA State Calculus Competition (Team)': { type: 'file', elementId: 'calccomp1' },
+                                    'Tom Morley Award (Multivariable Calc)': { type: 'file', elementId: 'multimorley' },
+                                    'Tom Morley Award (Linear Algebra)': { type: 'file', elementId: 'linearmorley' }
+                                }
+                            }
                         }
                     }
                 };
@@ -1213,18 +1230,33 @@
                 const parts = command.trim().split(/\s+/);
                 const baseCommand = parts[0];
                 const args = parts.slice(1);
-
                 switch (baseCommand) {
                     case 'help':
-                        printToTerminal('Available commands: help, clear, echo, date, ls, cd, pwd, mkdir, rmdir, rm, cp, mv, cat, grep');
+                        printToTerminal('Available commands:\nhelp: Bring up the help menu\nclear: Clear the terminal screen\necho: Write arguments to the standard output\ndate: Get current date and time\nwhoami: Display information about Aarush\nls: List directory contents\ncd [dir]: Change working directory\npwd: Return working directory\nrestart: Restart the page\nshutdown: Close all related pages\nfullscreen: Full screen the window\nopenurl [url]: Open a url in window (Note: not all urls may open)');
                         break;
                     case 'clear':
                         terminalOutput.innerHTML = '';
                         break;
                     case 'echo':
                         printToTerminal(args.join(' '));
+                        break;
                     case 'date':
                         printToTerminal(new Date().toLocaleString());
+                        break;
+                    case 'whoami':
+                        printToTerminal("My name is Aarush Lanjharia and I am a Computer Science student at the Georgia Institute of technology with threads in intelligence and cybersecurity!\nAs my side hobbies, I love to 3D print, do magic tricks and make paper crafts!")
+                        break;
+                    case 'openurl':
+                        let urlToOpen = args[0]
+                        if (urlToOpen.substring(0, 7) != "http://" && urlToOpen.substring(0, 8) != "https://") {
+                            urlToOpen = "http://" + urlToOpen;
+                        }
+                        printToTerminal(urlToOpen + " opened in new window")
+                        document.getElementById("generic-iframe").src = urlToOpen;
+                        document.getElementById("generic-window-title").innerHTML = `<i class="fa-solid fa-terminal" class = "genericTerminal" style></i>`
+                        const windowElement = document.getElementById("generic-window");
+                        windowElement.style.display = 'flex';
+                        windowElement.style.zIndex = currentZIndex++;
                         break;
                     case 'ls':
                         let output = '';
@@ -1240,11 +1272,7 @@
                             break;
                         }
                         const targetDirName = args[0];
-                        if (!targetDirName || !(targetDirName in currentDirectory.contents) || currentDirectory.contents[targetDirName].type !== 'dir') { // Check if targetDirName is valid directory
-                            printToTerminal(`cd: no such directory: ${args[0]}`); // Corrected error message
-                            return;
-                        }
-                        if (targetDirName === '..') {
+                        if (args[0] == '..') {
                             if (currentPath !== '/') {
                                 const pathParts = currentPath.split('/').filter(part => part);
                                 pathParts.pop();
@@ -1264,31 +1292,57 @@
                                 }
 
                             }
-                        }
-
-                        else if (currentDirectory.contents[targetDirName] && currentDirectory.contents[targetDirName].type === 'dir') {
+                        } else if (currentDirectory.contents[targetDirName] && currentDirectory.contents[targetDirName].type === 'dir') {
                             currentDirectory = currentDirectory.contents[targetDirName];
                             currentPath += (currentPath === '/' ? '' : '/') + targetDirName;
+                        } else if (currentDirectory.contents[targetDirName] && currentDirectory.contents[targetDirName].type === 'file') {
+                            printToTerminal(`cd functionality only supported for directories. ${args[0]} is a file`);
                         } else {
                             printToTerminal(`cd: no such file or directory: ${args[0]}`);
                         }
+                        document.getElementsByClassName("terminal-prompt")[0].innerHTML = "C:" + currentPath + ">"
                         break;
                     case 'pwd':
                         printToTerminal(currentPath);
                         break;
-                    case 'mkdir':
-                    case 'rmdir':
                     case 'rm':
-                    case 'cp':
-                    case 'mv':
-                    case 'cat':
-                    case 'grep':
-                    case 'chmod':
-                    case 'chown':
-                    case 'sudo':
-                    case 'history':
-                    case 'man':
-                        printToTerminal(`${baseCommand}: command not implemented in this simulation for dynamic content`);
+                        if (!args[0]) {
+                            printToTerminal('rm: missing operand');
+                            return;
+                        }
+                        let target = "";
+                        for (let i = 0; i < args.length; i++) {
+                            target += args[i] + " "
+                        }
+                        target = target.trim()
+                        if (target in currentDirectory.contents) {
+                            const element = document.getElementById(currentDirectory.contents[target].elementId);
+                            if (element) {
+                                element.remove();
+                            }
+                            delete currentDirectory.contents[target];
+                            printToTerminal(`Removed ${target}`);
+                        } else {
+                            printToTerminal(`rm: cannot remove '${target}': No such file or directory`);
+                        }
+                        break;
+                    case 'restart':
+                        location.reload()
+                        break;
+                    case 'shutdown':
+                        for (const tab of openedTabs) {
+                            if (!tab.closed) { // Check if already closed
+                                tab.close();
+                            }
+                        }
+                        openedTabs = []; // Clear the array
+
+                        window.location.replace('about:blank');
+                        break;
+                    case 'fullscreen':
+                        if (document.fullscreenEnabled) {
+                            document.documentElement.requestFullscreen();
+                        }
                         break;
                     default:
                         printToTerminal(`Command not recognized: ${baseCommand}`);
@@ -1299,7 +1353,7 @@
                 if (event.key === 'Enter') {
                     event.preventDefault(); // Prevent default newline in input
                     const command = terminalInput.value;
-                    printToTerminal(`<span class="terminal-prompt">C:\></span>${command}`, 'terminal-output'); // Print user command
+                    printToTerminal(`C:${currentPath}> ${command}`, 'terminal-output'); // Print user command
                     executeCommand(command);
                     terminalInput.value = ''; // Clear input
                 }
@@ -1722,8 +1776,6 @@
                         setTimeout(() => {
                             searchInput.style.color = "#555";
                         }, "500");
-                        console.log(`No results found for "${searchInput.value}"`);
-
                     } else {
                         searchInput.value = ""
                     }
@@ -1821,7 +1873,6 @@
                         wifiTooltipText.textContent = `WiFi: ${ipAddress}`;
                     } catch (error) {
                         wifiTooltipText.textContent = 'WiFi: Not Available';
-                        console.error("Error fetching IP address:", error); // Log errors for debugging
                     }
                 });
             } else {
@@ -1847,12 +1898,10 @@
                         })
                         .catch(error => {
                             locationTooltipText.textContent = 'Location: Error getting location';
-                            console.error("Error fetching location data:", error); // Log errors
                         });
 
                 }, error => {
                     locationTooltipText.textContent = 'Location: Location access denied';
-                    console.error("Geolocation access denied:", error.message); // Log geolocation errors
                 });
             } else {
                 locationTooltipText.textContent = 'Location: Geolocation not supported';
@@ -1883,7 +1932,6 @@
                     battery.addEventListener('levelchange', updateBatteryInfo);
                 }).catch(error => {
                     batteryTooltipText.textContent = 'Battery Info: Not Available';
-                    console.error("Error accessing Battery API:", error); // Log battery API errors
                 });
             } else {
                 batteryTooltipText.textContent = 'Battery Info: Not Available';
@@ -1991,7 +2039,6 @@
                     recentCommits.reverse();
                     return recentCommits;
                 } catch (error) {
-                    console.error("Error fetching commits:", error);
                     return [];
                 }
             }
