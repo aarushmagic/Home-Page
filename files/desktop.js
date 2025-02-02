@@ -364,12 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (windowId) {
                 const windowElement = document.getElementById(windowId);
                 if (windowElement) {
-                    windowElement.style.display = 'flex';
-                    windowElement.style.zIndex = currentZIndex++;
-
-                    if (windowId === 'resume-window') {
-                        loadResumePDF();
-                    } else if (windowId === 'linkedin-window') {
+                    if (windowId === 'linkedin-window') {
                         openNewTab('https://www.linkedin.com/in/aarush-lanjharia-065216228/', '_blank');
                         windowElement.style.display = 'none';
                     } else if (windowId === 'mail-window') {
@@ -378,31 +373,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (windowId === 'github-window') {
                         openNewTab('https://github.com/heightcalculator/', '_blank');
                         windowElement.style.display = 'none';
-                    } else if (windowId === 'terminal-window') {
-                        document.getElementById('terminal-input').focus();
-                    } else if (windowId === 'bing-window') {
-                        // No specific action needed here - iframe loads automatically
+                    } else {
+                        windowElement.style.display = 'flex';
+                        windowElement.style.zIndex = currentZIndex++;
                     }
                 }
             } else if (folderId) {
                 const folderElement = document.getElementById(folderId);
                 if (folderElement) {
-                    folderElement.style.display = 'flex';
-                    folderElement.style.zIndex = currentZIndex++;
-                }
-            }
-        });
-    });
-
-    folderIcons.forEach(icon => {
-        icon.addEventListener('click', () => {
-            const folderId = icon.getAttribute('data-folder');
-            if (folderId) {
-                const folderElement = document.getElementById(folderId);
-                if (folderElement) {
-                    windows.forEach(win => win.style.display = 'none');
-                    folderViews.forEach(folder => folder.style.display = 'none');
-                    document.querySelectorAll('.terminal-window').forEach(termWin => termWin.style.display = 'none');
                     folderElement.style.display = 'flex';
                     folderElement.style.zIndex = currentZIndex++;
                 }
@@ -812,79 +790,6 @@ document.addEventListener('DOMContentLoaded', () => {
         batteryTooltipText.textContent = 'Battery Info: Not Available';
     }
 
-    // --- Resume PDF Loading Function ... (rest of your PDF loading function - keep all of it) ...
-    function loadResumePDF() {
-        pdfCanvas = document.getElementById('resume-pdf-canvas');
-        pdfCanvasContext = pdfCanvas.getContext('2d');
-        const pdfUrl = 'files/resume.pdf'; // Path to your resume PDF
-
-        pdfjsLib.getDocument(pdfUrl).promise.then(pdfDocument => {
-            pdfDocument.getPage(1).then(page => { // Render the first page
-                pdfPage = page; // Store page for zooming
-                renderPDF(); // Initial render
-            });
-        });
-    }
-
-    function renderPDF() {
-        if (!pdfPage) return;
-
-        pdfViewport = pdfPage.getViewport({ scale: currentScale });
-        pdfCanvas.height = pdfViewport.height;
-        pdfCanvas.width = pdfViewport.width;
-
-        const renderContext = {
-            canvasContext: pdfCanvasContext,
-            viewport: pdfViewport
-        };
-        pdfPage.render(renderContext); // This is where the error was
-    }
-
-    // --- Zoom Functions ... (rest of your zoom functions - keep all of it) ...
-    function zoomIn() {
-        currentScale = Math.min(currentScale + 0.2, 3.0); // Zoom in, max 3x
-        renderPDF();
-    }
-
-    function zoomOut() {
-        currentScale = Math.max(currentScale - 0.2, 0.5); // Zoom out, min 0.5x
-        renderPDF();
-    }
-
-    function zoomReset() {
-        currentScale = 1.0;
-        renderPDF();
-    }
-
-    // --- Zoom Button Event Listeners ... (rest of your zoom button event listeners - keep all of it) ...
-    zoomInButton.addEventListener('click', () => {
-        currentScale = Math.min(currentScale + 0.2, 3.0);
-        if (pdfPage) {
-            pdfViewport = pdfPage.getViewport({ scale: currentScale });
-            pdfCanvas.height = pdfViewport.height; pdfCanvas.width = pdfViewport.width;
-            renderPDF(pdfPage);
-        }
-    });
-
-    zoomOutButton.addEventListener('click', () => {
-        currentScale = Math.max(currentScale - 0.2, 0.5);
-        if (pdfPage) {
-            pdfViewport = pdfPage.getViewport({ scale: currentScale });
-            pdfCanvas.height = pdfViewport.height;
-            pdfCanvas.width = pdfViewport.width;
-            renderPDF(pdfPage);
-        }
-    });
-
-    zoomResetButton.addEventListener('click', () => {
-        currentScale = 1.0;
-        if (pdfPage) {
-            pdfViewport = pdfPage.getViewport({ scale: currentScale });
-            pdfCanvas.height = pdfViewport.height;
-            pdfCanvas.width = pdfViewport.width;
-            renderPDF(pdfPage);
-        }
-    });
     // --- Notification Functionality ---
     let commitsArr = []
     const owner = "heightcalculator"; // e.g., "octocat"

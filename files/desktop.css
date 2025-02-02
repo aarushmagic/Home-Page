@@ -608,6 +608,10 @@ body {
     background-color: #fff;
 }
 
+#resumeIframe {
+    height: 60vh;
+}
+
 /* Start Menu Styles */
 .start-menu {
     position: absolute;
