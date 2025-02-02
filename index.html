@@ -1249,7 +1249,7 @@
                     case 'openurl':
                         let urlToOpen = args[0]
                         if (urlToOpen.substring(0, 7) != "http://" && urlToOpen.substring(0, 8) != "https://") {
-                            urlToOpen = "http://" + urlToOpen;
+                            urlToOpen = "https://" + urlToOpen;
                         }
                         printToTerminal(urlToOpen + " opened in new window")
                         document.getElementById("generic-iframe").src = urlToOpen;
