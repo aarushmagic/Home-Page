@@ -4,8 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.fullscreenEnabled) {
             document.documentElement.requestFullscreen();
         }
-        document.getElementById("fullscreen-option").style.display = "none"
     })
+    document.addEventListener('fullscreenchange', (event) => {
+        if (document.fullscreenElement) {
+          document.getElementById("fullscreen-option").style.display = "none";
+        } else {
+          document.getElementById("fullscreen-option").style.display = "block";
+        }
+      });
     const desktopIcons = document.querySelectorAll('.desktop-icon');
     const windows = document.querySelectorAll('.window');
     const folderIcons = document.querySelectorAll('.folder-icon');
