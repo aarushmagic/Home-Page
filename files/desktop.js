@@ -379,6 +379,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (windowId === 'github-window') {
                         openNewTab('https://github.com/heightcalculator/', '_blank');
                         windowElement.style.display = 'none';
+                    } else if (windowId === 'resume-window') {
+                        document.getElementById("resumeIframe").src = "files/resume.pdf";  
+                        windowElement.style.display = 'flex';
+                        windowElement.style.zIndex = currentZIndex++;
                     } else {
                         windowElement.style.display = 'flex';
                         windowElement.style.zIndex = currentZIndex++;
@@ -526,8 +530,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (windowId) {
                         document.getElementById(windowId).style.display = 'flex';
                         document.getElementById(windowId).style.zIndex = currentZIndex++;
-                        if (windowId === 'resume-window') loadResumePDF();
-                        foundMatch = true;
+                        if (windowId === 'resume-window') {
+                            document.getElementById("resumeIframe").src = "files/resume.pdf";
+                            foundMatch = true;
+                        }
                     } else if (folderId) {
                         document.getElementById(folderId).style.display = 'flex';
                         document.getElementById(folderId).style.zIndex = currentZIndex++;
@@ -539,9 +545,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Search Resume ... (rest of your JavaScript - keep all of it) ...
             const resumeContent = document.getElementById('resume-window').querySelector('.window-content').textContent.toLowerCase();
             if (resumeContent.includes(searchTerm)) {
+                document.getElementById("resumeIframe").src = "files/resume.pdf";
                 document.getElementById('resume-window').style.display = 'flex';
                 document.getElementById('resume-window').style.zIndex = currentZIndex++;
-                loadResumePDF();
                 foundMatch = true;
             }
 
