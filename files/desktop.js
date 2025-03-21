@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     document.addEventListener('fullscreenchange', (event) => {
         if (document.fullscreenElement) {
-          document.getElementById("fullscreen-option").style.display = "none";
+            document.getElementById("fullscreen-option").style.display = "none";
         } else {
-          document.getElementById("fullscreen-option").style.display = "block";
+            document.getElementById("fullscreen-option").style.display = "block";
         }
-      });
+    });
     const desktopIcons = document.querySelectorAll('.desktop-icon');
     const windows = document.querySelectorAll('.window');
     const folderIcons = document.querySelectorAll('.folder-icon');
@@ -742,29 +742,79 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
+    navigator.permissions.query({ name: 'geolocation' })
+        .then(function (result) {
+            if (result.state === 'granted') {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
 
-            // Basic reverse geocoding (replace with a proper service for real apps)
-            fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
-                .then(response => response.json())
-                .then(data => {
-                    const city = data.address.city || data.address.town || data.address.village || 'Unknown City';
-                    const region = data.address.state || data.address.country || 'Unknown Region';
-                    locationTooltipText.textContent = `Location: ${city}, ${region}`;
-                })
-                .catch(error => {
-                    locationTooltipText.textContent = 'Location: Error getting location';
-                });
+                        // Basic reverse geocoding (replace with a proper service for real apps)
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const city = data.address.city || data.address.town || data.address.village || 'Unknown City';
+                                const region = data.address.state || data.address.country || 'Unknown Region';
+                                locationTooltipText.textContent = `Location: ${city}, ${region}`;
+                            })
+                            .catch(error => {
+                                locationTooltipText.textContent = 'Location: Error getting location';
+                            });
 
-        }, error => {
-            locationTooltipText.textContent = 'Location: Location access denied';
-        });
-    } else {
-        locationTooltipText.textContent = 'Location: Geolocation not supported';
-    }
+                    }, error => {
+                        locationTooltipText.textContent = 'Location: Location access denied';
+                    });
+                } else {
+                    locationTooltipText.textContent = 'Location: Geolocation not supported';
+                }
+            } else {
+                console.log("runs1")
+                fetch("https://ipapi.co/json/")
+                    .then(response => response.json())
+                    .then(data => {
+                        let latitude = data.latitude;
+                        let longitude = data.longitude;
+                        // Basic reverse geocoding (replace with a proper service for real apps)
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const city = data.address.city || data.address.town || data.address.village || 'Unknown City';
+                                const region = data.address.state || data.address.country || 'Unknown Region';
+                                locationTooltipText.textContent = `Location: ${city}, ${region}`;
+                            })
+                            .catch(error => {
+                                locationTooltipText.textContent = 'Location: Error getting location';
+                            });
+                    })
+                    .catch(err => {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(position => {
+                                const latitude = position.coords.latitude;
+                                const longitude = position.coords.longitude;
+                                // Basic reverse geocoding (replace with a proper service for real apps)
+                                fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const city = data.address.city || data.address.town || data.address.village || 'Unknown City';
+                                        const region = data.address.state || data.address.country || 'Unknown Region';
+                                        locationTooltipText.textContent = `Location: ${city}, ${region}`;
+                                    })
+                                    .catch(error => {
+                                        locationTooltipText.textContent = 'Location: Error getting location';
+                                    });
+
+                            }, error => {
+                                console.log("Bye")
+                                locationTooltipText.textContent = 'Location: Location access denied';
+                            });
+                        } else {
+                            locationTooltipText.textContent = 'Location: Geolocation not supported';
+                        }
+                    });
+
+            }
+        })
 
     if (navigator.getBattery) {
         navigator.getBattery().then(battery => {
