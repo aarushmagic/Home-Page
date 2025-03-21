@@ -762,14 +762,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 locationTooltipText.textContent = 'Location: Error getting location';
                             });
 
-                    }, error => {
-                        locationTooltipText.textContent = 'Location: Location access denied';
-                    });
-                } else {
-                    locationTooltipText.textContent = 'Location: Geolocation not supported';
+                    })
                 }
             } else {
-                console.log("runs1")
                 fetch("https://ipapi.co/json/")
                     .then(response => response.json())
                     .then(data => {
@@ -781,11 +776,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             .then(data => {
                                 const city = data.address.city || data.address.town || data.address.village || 'Unknown City';
                                 const region = data.address.state || data.address.country || 'Unknown Region';
-                                locationTooltipText.textContent = `Location: ${city}, ${region}`;
+                                document.getElementById('location-tooltip').textContent = `Location: ${city}, ${region}`;
                             })
-                            .catch(error => {
-                                locationTooltipText.textContent = 'Location: Error getting location';
-                            });
                     })
                     .catch(err => {
                         if (navigator.geolocation) {
@@ -805,7 +797,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     });
 
                             }, error => {
-                                console.log("Bye")
                                 locationTooltipText.textContent = 'Location: Location access denied';
                             });
                         } else {
