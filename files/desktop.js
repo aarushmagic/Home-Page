@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const windowElement = document.getElementById(windowId);
                 if (windowElement) {
                     if (windowId === 'linkedin-window') {
-                        openNewTab('https://www.linkedin.com/in/aarush-lanjharia-065216228/', '_blank');
+                        openNewTab('https://www.linkedin.com/in/aarushl/', '_blank');
                         windowElement.style.display = 'none';
                     } else if (windowId === 'mail-window') {
                         openNewTab('mailto:alanjharia@gmail.com');
@@ -554,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Search LinkedIn, GitHub, Awards, Certifications (rest of your search logic - keep all of it) ...
             const linkedinContent = document.getElementById('linkedin-window').querySelector('.window-content').textContent.toLowerCase();
             if (linkedinContent.includes(searchTerm) || "linkedin".includes(searchTerm)) {
-                openNewTab("https://www.linkedin.com/in/aarush-lanjharia-065216228/")
+                openNewTab("https://www.linkedin.com/in/aarushl/")
                 document.getElementById("linkedin-window").style.display = 'none';
                 foundMatch = true;
             }
