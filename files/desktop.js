@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         openNewTab('mailto:alanjharia@gmail.com');
                         windowElement.style.display = 'none';
                     } else if (windowId === 'github-window') {
-                        openNewTab('https://github.com/heightcalculator/', '_blank');
+                        openNewTab('https://github.com/aarushmagic/', '_blank');
                         windowElement.style.display = 'none';
                     } else if (windowId === 'resume-window') {
                         document.getElementById("resumeIframe").src = "files/resume.pdf";  
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const githubContent = document.getElementById('github-window').querySelector('.window-content').textContent.toLowerCase();
             if (githubContent.includes(searchTerm) || "github".includes(searchTerm)) {
-                openNewTab("https://github.com/heightcalculator/")
+                openNewTab("https://github.com/aarushmagic/")
                 document.getElementById("github-window").style.display = 'none';
                 foundMatch = true;
             }
@@ -845,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Notification Functionality ---
     let commitsArr = []
-    const owner = "heightcalculator"; // e.g., "octocat"
+    const owner = "aarushmagic"; // e.g., "octocat"
     const repo = "home-page";  // e.g., "Hello-World"
     const token = ""; // Optional, for private repos or higher rate limit
 
